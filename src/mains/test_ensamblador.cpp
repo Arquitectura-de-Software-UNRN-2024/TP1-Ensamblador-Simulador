@@ -9,9 +9,7 @@
  * @copyright Copyright (c) 2024
  * 
  */
+#include "../../include/Ensamblador.hpp"
 #include <criterion/criterion.h>
 #include <criterion/internal/assert.h>
 
-Test(ejemplo , test) {
-	cr_assert_eq(1, 1);
-}
