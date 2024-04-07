@@ -1,6 +1,6 @@
 CC = g++
 LDFLAGS = -lcriterion
-CFLAGS = -O 
+CFLAGS = -O -std=c++20 
 ifeq ($(DEBUG),1)
 	CFLAGS += -g3
 endif
