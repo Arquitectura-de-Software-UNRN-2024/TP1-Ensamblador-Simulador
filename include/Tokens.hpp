@@ -59,7 +59,7 @@ private:
 
 class OperationValuesLookup {
 public:
-  std::optional<OperationValue> parse(std::string);
+  static std::optional<OperationValue> parse(const std::string);
 
 private:
   static const std::map<std::string, OperationValue> values_map;
