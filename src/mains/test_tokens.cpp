@@ -46,3 +46,16 @@ Test(should_be_followed_nothing, test) {
 	TokenType expected_value = TokenType::Nothing;
 	cr_assert_eq(result[0][0], expected_value);
 }
+
+Test(Op_type, test) {
+	TokenType result = Operation(OperationValue::LOAD).get_type();
+	TokenType expected = TokenType::Operation;
+	cr_assert_eq(result, expected);
+}
+
+Test(Num_type, test) {
+	TokenType result = Number(0).get_type();
+	TokenType expected = TokenType::Number;
+	cr_assert_eq(result, expected);
+}
+

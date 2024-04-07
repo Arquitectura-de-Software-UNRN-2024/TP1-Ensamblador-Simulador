@@ -33,6 +33,7 @@ public:
   virtual uint32_t get_value() const = 0;
   virtual bool can_be_first() const = 0;
   virtual std::vector<std::vector<TokenType>> should_be_followed_by() const = 0;
+  virtual TokenType get_type() const = 0;
 };
 
 class Operation : public Token {
@@ -41,6 +42,7 @@ public:
   virtual uint32_t get_value() const override;
   virtual bool can_be_first() const override;
   virtual std::vector<std::vector<TokenType>> should_be_followed_by() const override;
+  virtual TokenType get_type() const override;
 
 private:
   OperationValue value;
@@ -52,6 +54,7 @@ public:
   virtual uint32_t get_value() const override;
   virtual bool can_be_first() const override;
   virtual std::vector<std::vector<TokenType>> should_be_followed_by() const override;
+  virtual TokenType get_type() const override;
 
 private:
   uint32_t int24_value;

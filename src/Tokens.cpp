@@ -36,6 +36,10 @@ std::vector<std::vector<TokenType>> Operation::should_be_followed_by() const {
   return ret;
 }
 
+TokenType Operation::get_type() const {
+	return TokenType::Operation;
+}
+
 Number::Number(uint32_t v) : int24_value(v) {}
 
 uint32_t Number::get_value() const { return int24_value; }
@@ -45,3 +49,8 @@ bool Number::can_be_first() const { return false; }
 std::vector<std::vector<TokenType>> Number::should_be_followed_by() const {
   return {{TokenType::Nothing}};
 }
+
+TokenType Number::get_type() const {
+	return TokenType::Number;
+}
+
