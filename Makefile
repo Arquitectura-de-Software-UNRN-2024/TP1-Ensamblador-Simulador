@@ -9,6 +9,9 @@ MAINS = $(shell find src/mains/ -maxdepth 1 -type f -name "*.cpp")
 SRCS = $(shell find src/ -maxdepth 1 -type f -name "*.cpp")
 MAINOBJS = $(patsubst src/mains/%.cpp, obj/mains/%.o, $(MAINS))
 MAINOUTS = $(patsubst src/mains/%.cpp, %, $(MAINS))
+TESTS = $(shell find src/tests/ -maxdepth 1 -type f -name "*.cpp")
+TESTOBJS = $(patsubst src/tests/%.cpp, obj/tests/%.o, $(TESTS))
+TESTOUTS = $(patsubst src/tests/%.cpp, %, $(TESTS))
 OBJS = $(patsubst src/%.cpp, obj/%.o, $(SRCS))
 
 all: $(MAINOUTS)
@@ -16,6 +19,10 @@ all: $(MAINOUTS)
 $(MAINOUTS): $(OBJS) $(MAINOBJS)
 	@mkdir -p bin
 	$(CC) $(CFLAGS) -o bin/$@ obj/mains/$@.o $(OBJS) $(LDFLAGS)
+
+$(TESTOUTS): $(OBJS) $(TESTOBJS)
+	@mkdir -p bin
+	$(CC) $(CFLAGS) -o bin/$@ obj/tests/$@.o $(OBJS) $(LDFLAGS)
 
 obj/%.o: src/%.cpp 
 	@mkdir -p $(@D)
@@ -25,7 +32,16 @@ obj/mains/%.o: src/mains/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean
+obj/tests/%.o: src/tests/%.cpp 
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: test clean
+
+test: $(TESTOUTS)
+	 for file in $^ ; do \
+		 bin/$${file} ; \
+	 done
 
 clean:
 	rm -rf bin/ 
