@@ -1,5 +1,6 @@
 CC = g++
-LDFLAGS = -lcriterion
+LDFLAGS =
+LDTESTFLAGS = -lcriterion
 CFLAGS = -O -std=c++20 
 ifeq ($(DEBUG),1)
 	CFLAGS += -g3
@@ -22,7 +23,7 @@ $(MAINOUTS): $(OBJS) $(MAINOBJS)
 
 $(TESTOUTS): $(OBJS) $(TESTOBJS)
 	@mkdir -p bin
-	$(CC) $(CFLAGS) -o bin/$@ obj/tests/$@.o $(OBJS) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o bin/$@ obj/tests/$@.o $(OBJS) $(LDTESTFLAGS)
 
 obj/%.o: src/%.cpp 
 	@mkdir -p $(@D)
