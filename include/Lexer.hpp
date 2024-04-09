@@ -28,7 +28,7 @@ class OutOfRange : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = "OutOfRange: Given value out of int24 range.";
+    const char *msg = "OutOfRange: Given value out of int24 range";
 };
 
 class LexicalError : public std::exception {
@@ -40,7 +40,7 @@ class LexicalError : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = "LexicalError: Found an unrecognized token.";
+    const char *msg = "LexicalError: Found an unrecognized token";
 };
 
 }; // namespace Lexer

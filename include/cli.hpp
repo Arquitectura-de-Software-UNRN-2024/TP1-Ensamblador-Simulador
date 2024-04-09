@@ -26,9 +26,7 @@ class NoInFile : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = BOLDWHITE
-        "ensamblador: " RED "error fatal: " RESET
-        "no hay ficheros de entrada\ncompilación terminada.";
+    const char *msg = "no hay ficheros de entrada";
 };
 
 class TooManyArgs : public std::exception {
@@ -40,8 +38,7 @@ class TooManyArgs : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = BOLDWHITE "ensamblador: " RED "error fatal: " RESET
-                                "demasiados argumentos\ncompilación terminada.";
+    const char *msg = "demasiados argumentos";
 };
 
 class BadOUse : public std::exception {
@@ -53,8 +50,7 @@ class BadOUse : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = BOLDWHITE "ensamblador: " RED "error fatal: " RESET
-                                "uso incorrecto de -o\ncompilación terminada.";
+    const char *msg = "uso incorrecto de -o, falta <fichero>";
 };
 
 class FailToOpenInFile : public std::exception {
@@ -66,9 +62,7 @@ class FailToOpenInFile : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = BOLDWHITE
-        "ensamblador: " RED "error fatal: " RESET
-        "problema abriendo el archivo de entrada\ncompilación terminada.";
+    const char *msg = "problema abriendo el archivo de entrada";
 };
 
 class FailToOpenOutFile : public std::exception {
@@ -80,9 +74,7 @@ class FailToOpenOutFile : public std::exception {
     const char *what() const noexcept(true) override;
 
   private:
-    const char *msg = BOLDWHITE
-        "ensamblador: " RED "error fatal: " RESET
-        "problema abriendo el archivo de salida\ncompilación terminada.";
+    const char *msg = "problema abriendo el archivo de salida";
 };
 
 } // namespace cli

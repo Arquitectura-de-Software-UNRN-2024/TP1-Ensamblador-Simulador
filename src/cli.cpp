@@ -3,7 +3,7 @@
 #include <utility>
 
 const char *cli::help_str =
-    "Modo de empleo: gcc [opciones] "
+    "Modo de empleo: ensamblador [opciones] "
     "fichero...\nOpciones:\n--help | -h              "
     "Muestra esta información.\n-o <fichero>             "
     "Coloca la salida en el <fichero>.";
