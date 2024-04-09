@@ -100,6 +100,19 @@ Test(fail_to_open_ifile, test) {
     } catch (cli::FailToOpenInFile) {
         exception = true;
     }
-    remove_temp_file("out_ifile.s");
     cr_assert(exception);
+}
+
+Test(doesnt_need_help, test) {
+    const char *argv[] = {"", "ifile.s"};
+    bool result = cli::needs_help(2, argv);
+    bool expected = false;
+    cr_assert_eq(result, expected);
+}
+
+Test(needs_help, test) {
+    const char *argv[] = {"", "-h"};
+    bool result = cli::needs_help(2, argv);
+    bool expected = true;
+    cr_assert_eq(result, expected);
 }

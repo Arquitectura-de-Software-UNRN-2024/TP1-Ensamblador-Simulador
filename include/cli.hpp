@@ -6,6 +6,10 @@
 
 namespace cli {
 
+extern const char *help_str;
+
+bool needs_help(int argc, const char *argv[]);
+
 struct Files {
     std::ifstream ifile;
     std::ofstream ofile;

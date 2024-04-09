@@ -1,7 +1,22 @@
 #include "../include/cli.hpp"
 #include <cstring>
-#include <iostream>
 #include <utility>
+
+const char *cli::help_str =
+    "Modo de empleo: gcc [opciones] "
+    "fichero...\nOpciones:\n--help | -h              "
+    "Muestra esta información.\n-o <fichero>             "
+    "Coloca la salida en el <fichero>.";
+
+bool cli::needs_help(int argc, const char *argv[]) {
+    for (int i = 1; i < argc; ++i) {
+        if (std::strcmp(argv[i], "--help") == 0 ||
+            std::strcmp(argv[i], "-h") == 0) {
+            return true;
+        }
+    }
+    return false;
+}
 
 struct cli::Files cli::parse_args(int argc, const char *argv[]) {
     if (argc < 2) {
@@ -11,17 +26,6 @@ struct cli::Files cli::parse_args(int argc, const char *argv[]) {
     if (argc > 4) {
         TooManyArgs e;
         throw e;
-    }
-    for (int i = 1; i < argc; ++i) {
-        if (std::strcmp(argv[i], "--help") == 0 ||
-            std::strcmp(argv[i], "-h") == 0) {
-            std::cout << "Modo de empleo: gcc [opciones] "
-                         "fichero...\nOpciones:\n--help | -h              "
-                         "Muestra esta información.\n-o <fichero>             "
-                         "Coloca la salida en el <fichero>."
-                      << std::endl;
-            exit(0);
-        }
     }
     int o_index = -1;
     for (int i = 1; i < argc; ++i) {
@@ -46,11 +50,11 @@ struct cli::Files cli::parse_args(int argc, const char *argv[]) {
     std::string of_name = o_index == -1 ? "out_" + std::string(argv[i_index])
                                         : argv[o_index + 1];
     std::ifstream ifile(argv[i_index]);
-    std::ofstream ofile(of_name);
     if (!ifile.is_open()) {
         FailToOpenInFile e;
         throw e;
     }
+    std::ofstream ofile(of_name);
     if (!ofile.is_open()) {
         FailToOpenOutFile e;
         throw e;
