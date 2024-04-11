@@ -41,7 +41,7 @@ std::vector<std::vector<TokenType>> Operation::should_be_followed_by() const {
         ret = {{TokenType::Number}};
         break;
     case OperationValue::PRINT:
-        ret = {{TokenType::Nothing}};
+        ret = {{}};
         break;
     }
     return ret;
@@ -56,7 +56,7 @@ uint32_t Number::get_value() const { return int24_value; }
 bool Number::can_be_first() const { return false; }
 
 std::vector<std::vector<TokenType>> Number::should_be_followed_by() const {
-    return {{TokenType::Nothing}};
+    return {{}};
 }
 
 TokenType Number::get_type() const { return TokenType::Number; }
