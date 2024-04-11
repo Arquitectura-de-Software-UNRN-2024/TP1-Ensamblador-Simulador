@@ -2,12 +2,12 @@
  * @file Tokens.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-04-10
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #include "../include/Tokens.hpp"
 
@@ -36,13 +36,13 @@ bool Operation::can_be_first() const { return true; }
 std::vector<std::vector<TokenType>> Operation::should_be_followed_by() const {
     std::vector<std::vector<TokenType>> ret;
     switch (value) {
-    case OperationValue::LOAD:
-    case OperationValue::ADD:
-        ret = {{TokenType::Number}};
-        break;
-    case OperationValue::PRINT:
-        ret = {{}};
-        break;
+        case OperationValue::LOAD:
+        case OperationValue::ADD:
+            ret = {{TokenType::Number}};
+            break;
+        case OperationValue::PRINT:
+            ret = {{}};
+            break;
     }
     return ret;
 }

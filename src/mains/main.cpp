@@ -2,12 +2,12 @@
  * @file main.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-04-10
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #include "../../include/Lexer.hpp"
 #include "../../include/cli.hpp"
