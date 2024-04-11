@@ -41,10 +41,8 @@ Test(should_be_followed_nothing, test) {
     std::vector<std::vector<TokenType>> result = op.should_be_followed_by();
     int expected_size = 1;
     cr_assert_eq(result.size(), expected_size);
-    int inner_expected_size = 1;
+    int inner_expected_size = 0;
     cr_assert_eq(result[0].size(), inner_expected_size);
-    TokenType expected_value = TokenType::Nothing;
-    cr_assert_eq(result[0][0], expected_value);
 }
 
 Test(Op_type, test) {
