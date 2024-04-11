@@ -2,22 +2,17 @@
  * @file cli.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-04-10
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #include "../include/cli.hpp"
 #include <cstring>
+#include <fstream>
 #include <utility>
-
-const char *cli::help_str =
-    "Modo de empleo: ensamblador [opciones] "
-    "fichero...\nOpciones:\n--help | -h              "
-    "Muestra esta información.\n-o <fichero>             "
-    "Coloca la salida en el <fichero>.";
 
 bool cli::needs_help(int argc, const char *argv[]) {
     for (int i = 1; i < argc; ++i) {
@@ -28,6 +23,12 @@ bool cli::needs_help(int argc, const char *argv[]) {
     }
     return false;
 }
+
+const char *cli::help_str =
+    "Modo de empleo: ensamblador [opciones] "
+    "fichero...\nOpciones:\n--help | -h              "
+    "Muestra esta información.\n-o <fichero>             "
+    "Coloca la salida en el <fichero>.";
 
 struct cli::Files cli::parse_args(int argc, const char *argv[]) {
     if (argc < 2) {
@@ -65,7 +66,7 @@ struct cli::Files cli::parse_args(int argc, const char *argv[]) {
         FailToOpenInFile e;
         throw e;
     }
-    std::ofstream ofile(of_name);
+    std::ofstream ofile(of_name, std::ios::binary);
     if (!ofile.is_open()) {
         FailToOpenOutFile e;
         throw e;
@@ -82,3 +83,25 @@ const char *cli::BadOUse::what() const noexcept(true) { return msg; }
 const char *cli::FailToOpenInFile::what() const noexcept(true) { return msg; }
 
 const char *cli::FailToOpenOutFile::what() const noexcept(true) { return msg; }
+
+const char *cli::emulator::help_str =
+    "Modo de empleo: ensamblador [opciones] "
+    "fichero_binario\nOpciones:\n--help | -h              "
+    "Muestra esta información.";
+
+std::ifstream cli::emulator::parse_args(int argc, const char *argv[]) {
+    if (argc < 2) {
+        NoInFile e;
+        throw e;
+    }
+    if (argc > 2) {
+        TooManyArgs e;
+        throw e;
+    }
+    std::ifstream ifile(argv[1], std::ios::binary);
+    if (!ifile.is_open()) {
+        FailToOpenInFile e;
+        throw e;
+    }
+    return ifile;
+}

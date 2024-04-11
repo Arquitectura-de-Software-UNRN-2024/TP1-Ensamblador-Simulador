@@ -2,12 +2,12 @@
  * @file cli.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-04-10
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #include <fstream>
 
@@ -17,9 +17,9 @@
 
 namespace cli {
 
-extern const char *help_str;
-
 bool needs_help(int argc, const char *argv[]);
+
+extern const char *help_str;
 
 struct Files {
     std::ifstream ifile;
@@ -87,5 +87,13 @@ class FailToOpenOutFile : public std::exception {
   private:
     const char *msg = "problema abriendo el archivo de salida";
 };
+
+namespace emulator {
+
+extern const char *help_str;
+
+std::ifstream parse_args(int argc, const char *argv[]);
+
+} // namespace emulator
 
 } // namespace cli
