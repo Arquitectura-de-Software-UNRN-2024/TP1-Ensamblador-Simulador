@@ -19,6 +19,8 @@ namespace cli {
 
 bool needs_help(int argc, const char *argv[]);
 
+namespace  assembler {
+
 extern const char *help_str;
 
 struct Files {
@@ -27,6 +29,8 @@ struct Files {
 };
 
 struct Files parse_args(int argc, const char *argv[]);
+
+}
 
 class NoInFile : public std::exception {
   public:

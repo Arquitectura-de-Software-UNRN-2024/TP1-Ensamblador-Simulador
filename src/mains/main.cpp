@@ -19,12 +19,12 @@
 
 int main(int argc, const char *argv[]) {
     if (cli::needs_help(argc, argv)) {
-        std::cout << cli::help_str << std::endl;
+        std::cout << cli::assembler::help_str << std::endl;
         exit(0);
     }
-    struct cli::Files files;
+    struct cli::assembler::Files files;
     try {
-        files = cli::parse_args(argc, argv);
+        files = cli::assembler ::parse_args(argc, argv);
     } catch (const std::exception &e) {
         std::cerr << BOLDWHITE "ensamblador: " RED "error fatal: " RESET
                   << e.what() << "\ncompilación terminada." << std::endl;

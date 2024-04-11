@@ -12,7 +12,6 @@
 #include "../include/cli.hpp"
 #include <cstring>
 #include <fstream>
-#include <utility>
 
 bool cli::needs_help(int argc, const char *argv[]) {
     for (int i = 1; i < argc; ++i) {
@@ -24,13 +23,14 @@ bool cli::needs_help(int argc, const char *argv[]) {
     return false;
 }
 
-const char *cli::help_str =
+const char *cli::assembler::help_str =
     "Modo de empleo: ensamblador [opciones] "
     "fichero...\nOpciones:\n--help | -h              "
     "Muestra esta información.\n-o <fichero>             "
     "Coloca la salida en el <fichero>.";
 
-struct cli::Files cli::parse_args(int argc, const char *argv[]) {
+struct cli::assembler::Files cli::assembler::parse_args(int argc,
+                                                        const char *argv[]) {
     if (argc < 2) {
         NoInFile e;
         throw e;
@@ -71,7 +71,7 @@ struct cli::Files cli::parse_args(int argc, const char *argv[]) {
         FailToOpenOutFile e;
         throw e;
     }
-    return cli::Files{std::move(ifile), std::move(ofile)};
+    return cli::assembler::Files{std::move(ifile), std::move(ofile)};
 }
 
 const char *cli::NoInFile::what() const noexcept(true) { return msg; }
