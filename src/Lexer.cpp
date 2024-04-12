@@ -12,13 +12,7 @@
 #include "../include/Lexer.hpp"
 #include "../include/int24.hpp"
 
-/**
- * @brief Tokeniza una línea de texto en tokens.
- * @param line La línea de texto.
- * @return Vector de punteros únicos a tokens.
- * @throws LexicalError Si se encuentra un token no válido.
- * @throws OutOfRange Si el valor numérico está fuera del rango válido para int24.
- */
+
 std::vector<std::unique_ptr<Token>> Lexer::tokenize(std::string line) {
     std::vector<std::unique_ptr<Token>> ret;
     std::vector<std::string> words = Lexer::split(line);
@@ -46,11 +40,7 @@ std::vector<std::unique_ptr<Token>> Lexer::tokenize(std::string line) {
     return ret;
 }
 
-/**
- * @brief Divide una línea de texto en palabras individuales.
- * @param line La línea de texto.
- * @return Vector de palabras identificadas.
- */
+
 std::vector<std::string> Lexer::split(std::string line) {
     std::vector<std::string> ret;
     char prev = ' ';

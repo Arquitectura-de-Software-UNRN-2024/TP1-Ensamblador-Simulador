@@ -2,7 +2,7 @@
  * @file box.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief
+ * @brief Box and OpBox classes for text-based UI.
  * @version 0.1
  * @date 2024-04-11
  *

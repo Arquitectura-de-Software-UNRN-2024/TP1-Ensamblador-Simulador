@@ -2,7 +2,7 @@
  * @file cli.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief
+ * @brief cpp implementation for command-line interface functions and exceptions.
  * @version 0.1
  * @date 2024-04-10
  *

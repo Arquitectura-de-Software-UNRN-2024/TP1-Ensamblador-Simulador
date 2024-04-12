@@ -12,6 +12,18 @@
 
 #include <cstdint>
 
+/**
+ * @brief a function to convert a num to big endian
+ *
+ * @param num
+ * @param buffer
+ */
 void to_big_endian(uint32_t num, char buffer[4]);
 
+/**
+ * @brief a function to convert a big endian to num
+ *
+ * @param buffer
+ * @return uint32_t
+ */
 uint32_t from_big_endian(char buffer[4]);

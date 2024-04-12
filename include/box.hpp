@@ -2,7 +2,7 @@
  * @file box.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief Header file for Box and OpBox classes for text-based UI.
  * @version 0.1
  * @date 2024-04-11
  * 
@@ -23,8 +23,22 @@
 #define FORWARD "C"
 #define BACKWARD "D"
 
+
+/**
+ * @brief Class representing a text box for the UI.
+ */
 class Box {
   public:
+
+     /**
+     * @brief Constructor for a Box.
+     * @param x X-coordinate of the upper left corner.
+     * @param y Y-coordinate of the upper left corner.
+     * @param w Width of the box.
+     * @param h Height of the box.
+     * @param title Title displayed on the top of the box.
+     * @param content Vector of strings representing the content.
+     */
     Box(size_t x, size_t y, size_t w, size_t h, std::string title,
         std::vector<std::string> content);
     void update_content(std::vector<std::string> new_content);
@@ -32,6 +46,12 @@ class Box {
 	 std::vector<std::string> get_content()const;
 
   private:
+
+    /**
+     * @brief Calculates the displayed length of a string considering wrapping within the box.
+     * @param str The string to calculate the length for.
+     * @return The displayed length of the string.
+     */
     static size_t displayed_length(const std::string &str);
 
     size_t x;
@@ -42,6 +62,9 @@ class Box {
     std::vector<std::string> content;
 };
 
+/**
+ * @brief Inherits from Box and provides functionality for an operation box.
+ */
 class OpBox : public Box {
   public:
     using Box::Box;

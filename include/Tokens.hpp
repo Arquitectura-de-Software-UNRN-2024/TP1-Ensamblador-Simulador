@@ -2,7 +2,7 @@
  * @file Tokens.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief
+ * @brief  Header file for token representations and operations.
  * @version 0.1
  * @date 2024-04-10
  *
@@ -17,14 +17,23 @@
 #include <string>
 #include <vector>
 
+/**
+ * @brief Enumerates the possible token types.
+ */
 enum class TokenType { Nothing, Operation, Number };
 
+/**
+ * @brief Enumerates the supported operation values.
+ */
 enum class OperationValue {
     LOAD = 0x01000000,
     ADD = 0x02000000,
     PRINT = 0x03000000,
 };
 
+/**
+ * @brief Base class representing a token.
+ */
 class Token {
   public:
     virtual uint32_t get_value() const = 0;

@@ -20,12 +20,6 @@
 
 #include "../include/bigendian.hpp"
 
-/**
- * @brief a function to convert a num to big endian
- *
- * @param num
- * @param buffer
- */
 void to_big_endian(uint32_t num, char buffer[4]) {
     buffer[0] = static_cast<char>((num >> 24) & 0xFF);
     buffer[1] = static_cast<char>((num >> 16) & 0xFF);
@@ -33,12 +27,6 @@ void to_big_endian(uint32_t num, char buffer[4]) {
     buffer[3] = static_cast<char>((num >> 0) & 0xFF);
 }
 
-/**
- * @brief a function to convert a big endian to num
- *
- * @param buffer
- * @return uint32_t
- */
 uint32_t from_big_endian(char buffer[4]) {
     return (static_cast<uint32_t>(buffer[0]) << 24) |
            (static_cast<uint32_t>(buffer[1]) << 16) |
