@@ -2,12 +2,13 @@
  * @file bigendian.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief the hpp file to the function to convert a num to big endian and from big endian
+ * @brief the hpp file to the function to convert a num to big endian and from
+ * big endian
  * @version 0.1
  * @date 2024-04-11
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #include <cstdint>

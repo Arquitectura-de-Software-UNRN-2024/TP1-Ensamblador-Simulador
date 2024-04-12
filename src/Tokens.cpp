@@ -29,7 +29,7 @@ OperationValuesLookup::parse(const std::string crude_operation) {
 
 Operation::Operation(OperationValue v) : value(v) {}
 
-uint32_t Operation::get_value() const { return (uint32_t)value; }
+uint32_t Operation::get_value() const { return static_cast<uint32_t>(value); }
 
 bool Operation::can_be_first() const { return true; }
 

@@ -12,7 +12,6 @@
 #include "../include/Lexer.hpp"
 #include "../include/int24.hpp"
 
-
 std::vector<std::unique_ptr<Token>> Lexer::tokenize(std::string line) {
     std::vector<std::unique_ptr<Token>> ret;
     std::vector<std::string> words = Lexer::split(line);
@@ -31,7 +30,8 @@ std::vector<std::unique_ptr<Token>> Lexer::tokenize(std::string line) {
             LexicalError e;
             throw e;
         }
-        if (num < (int32_t)INT24_MIN || num > (int32_t)INT24_MAX) {
+        if (num < static_cast<int32_t>(INT24_MIN) ||
+            num > static_cast<int32_t>(INT24_MAX)) {
             OutOfRange e;
             throw e;
         }
@@ -39,7 +39,6 @@ std::vector<std::unique_ptr<Token>> Lexer::tokenize(std::string line) {
     }
     return ret;
 }
-
 
 std::vector<std::string> Lexer::split(std::string line) {
     std::vector<std::string> ret;

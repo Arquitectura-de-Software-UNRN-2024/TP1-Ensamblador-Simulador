@@ -30,6 +30,6 @@ void to_big_endian(uint32_t num, char buffer[4]) {
 uint32_t from_big_endian(char buffer[4]) {
     return (static_cast<uint32_t>(buffer[0] & 0xFF) << 24) |
            (static_cast<uint32_t>(buffer[1] & 0xFF) << 16) |
-           (static_cast<uint32_t>(buffer[2] & 0xFF) <<  8) |
-           (static_cast<uint32_t>(buffer[3] & 0xFF) <<  0);
+           (static_cast<uint32_t>(buffer[2] & 0xFF) << 8) |
+           (static_cast<uint32_t>(buffer[3] & 0xFF) << 0);
 }

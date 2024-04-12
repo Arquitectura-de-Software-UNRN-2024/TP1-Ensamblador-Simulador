@@ -1,7 +1,7 @@
 CC = g++
 LDFLAGS =
 LDTESTFLAGS = -lcriterion
-CFLAGS = -O -std=c++20 
+CFLAGS = -O -std=c++20
 ifeq ($(DEBUG),1)
 	CFLAGS += -g3
 endif

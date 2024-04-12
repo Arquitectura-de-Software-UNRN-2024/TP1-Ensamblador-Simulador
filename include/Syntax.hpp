@@ -21,18 +21,18 @@
  * @throws SyntaxError If a syntax error is encountered.
  */
 namespace Syntax {
-    uint32_t parse(std::vector<std::unique_ptr<Token>>);
+uint32_t parse(std::vector<std::unique_ptr<Token>>);
 
-    class SyntaxError : public std::exception {
-    public:
-        SyntaxError() = default;
-        ~SyntaxError() = default;
-        SyntaxError(SyntaxError &&) = default;
-        SyntaxError(const SyntaxError &) = default;
-        const char *what() const noexcept(true) override;
+class SyntaxError : public std::exception {
+  public:
+    SyntaxError() = default;
+    ~SyntaxError() = default;
+    SyntaxError(SyntaxError &&) = default;
+    SyntaxError(const SyntaxError &) = default;
+    const char *what() const noexcept(true) override;
 
-    private:
-        const char *msg = "SyntaxError: found invalid grammar";
-    };
+  private:
+    const char *msg = "SyntaxError: found invalid grammar";
+};
 
 }; // namespace Syntax

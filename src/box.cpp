@@ -16,13 +16,13 @@
 #include <iostream>
 #include <regex>
 
-Box::Box(size_t x, size_t y, size_t w, size_t h, std::string title,
-         std::vector<std::string> content)
-    : x(x), y(y), title(title), content(content) {
+Box::Box(size_t _x, size_t _y, size_t _w, size_t _h, std::string _title,
+         std::vector<std::string> _content)
+    : x(_x), y(_y), title(_title), content(_content) {
     size_t longest_contet_line =
-        content.size() > 0
+        _content.size() > 0
             ? displayed_length(
-                  std::max_element(content.begin(), content.end(),
+                  std::max_element(_content.begin(), _content.end(),
                                    [](std::string a, std::string b) {
                                        return displayed_length(a.data()) <
                                               displayed_length(b.data());
@@ -30,8 +30,8 @@ Box::Box(size_t x, size_t y, size_t w, size_t h, std::string title,
                       ->data())
             : 0;
     this->w =
-        std::max({w, displayed_length(title.data()), longest_contet_line});
-    this->h = std::max(h, content.size());
+        std::max({_w, displayed_length(_title.data()), longest_contet_line});
+    this->h = std::max(_h, _content.size());
 }
 
 void Box::update_content(std::vector<std::string> new_content) {
@@ -99,7 +99,7 @@ size_t Box::displayed_length(const std::string &str) {
     return grapheme_count;
 }
 
-std::vector<std::string> Box::get_content() const{ return this->content; }
+std::vector<std::string> Box::get_content() const { return this->content; }
 
 void OpBox::update_content(uint32_t operation) {
     std::string op_str;
@@ -127,4 +127,3 @@ void OpBox::update_content(uint32_t operation) {
 }
 
 const char *InvalidOperation::what() const noexcept(true) { return msg; }
-

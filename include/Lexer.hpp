@@ -21,7 +21,8 @@ namespace Lexer {
  * @param line La línea de texto.
  * @return Vector de punteros únicos a tokens.
  * @throws LexicalError Si se encuentra un token no válido.
- * @throws OutOfRange Si el valor numérico está fuera del rango válido para int24.
+ * @throws OutOfRange Si el valor numérico está fuera del rango válido para
+ * int24.
  */
 std::vector<std::unique_ptr<Token>> tokenize(std::string);
 

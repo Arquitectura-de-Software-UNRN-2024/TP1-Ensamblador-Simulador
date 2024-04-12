@@ -27,13 +27,13 @@ Test(to_int24_binmin, test) {
 }
 
 Test(to_int24_min, test) {
-    uint32_t result = to_int24(INT24_MIN);
+    uint32_t result = to_int24(static_cast<int32_t>(INT24_MIN));
     uint32_t expected = 0x00800000;
     cr_assert_eq(result, expected);
 }
 
 Test(to_int24_max, test) {
-    uint32_t result = to_int24(INT24_MAX);
+    uint32_t result = to_int24(static_cast<int32_t>(INT24_MAX));
     uint32_t expected = 0x007FFFFF;
     cr_assert_eq(result, expected);
 }

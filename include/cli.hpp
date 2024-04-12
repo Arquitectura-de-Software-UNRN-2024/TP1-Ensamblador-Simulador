@@ -25,7 +25,7 @@ namespace cli {
  */
 bool needs_help(int argc, const char *argv[]);
 
-namespace  assembler {
+namespace assembler {
 
 extern const char *help_str;
 
@@ -35,7 +35,8 @@ struct Files {
 };
 
 /**
- * @brief Parses command-line arguments and returns an object containing input/output files.
+ * @brief Parses command-line arguments and returns an object containing
+ * input/output files.
  * @param argc Number of arguments passed to the program.
  * @param argv Array of argument strings.
  * @return A Files struct containing the parsed input and output files.
@@ -47,7 +48,7 @@ struct Files {
  */
 struct Files parse_args(int argc, const char *argv[]);
 
-}
+} // namespace assembler
 
 class NoInFile : public std::exception {
   public:

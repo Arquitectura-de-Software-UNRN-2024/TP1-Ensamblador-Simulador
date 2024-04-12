@@ -28,7 +28,7 @@ Test(tokenizer, test) {
         std::unique_ptr<Token>(new Operation(OperationValue::LOAD)));
     expected.push_back(std::unique_ptr<Token>(new Number(3)));
     cr_assert_eq(result.size(), expected.size());
-    for (int i = 0; i < result.size(); ++i) {
+    for (size_t i = 0; i < result.size(); ++i) {
         cr_assert_eq(result[i]->get_value(), expected[i]->get_value());
     }
 }

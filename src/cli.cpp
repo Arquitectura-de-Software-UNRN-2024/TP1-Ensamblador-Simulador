@@ -2,7 +2,8 @@
  * @file cli.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief cpp implementation for command-line interface functions and exceptions.
+ * @brief cpp implementation for command-line interface functions and
+ * exceptions.
  * @version 0.1
  * @date 2024-04-10
  *
@@ -62,11 +63,11 @@ struct cli::assembler::Files cli::assembler::parse_args(int argc,
     int i_index = o_index == 2 || o_index == -1 ? 1 : 3;
 
     std::regex extension("\\.\\w*$");
-    
-    std::string bin_ext = std::regex_replace(std::string(argv[i_index]), extension, ".bin");
 
-    std::string of_name = o_index == -1 ? "out_" + bin_ext
-                                        : argv[o_index + 1];
+    std::string bin_ext =
+        std::regex_replace(std::string(argv[i_index]), extension, ".bin");
+
+    std::string of_name = o_index == -1 ? "out_" + bin_ext : argv[o_index + 1];
     std::ifstream ifile(argv[i_index]);
     if (!ifile.is_open()) {
         FailToOpenInFile e;
@@ -90,7 +91,9 @@ const char *cli::FailToOpenInFile::what() const noexcept(true) { return msg; }
 
 const char *cli::FailToOpenOutFile::what() const noexcept(true) { return msg; }
 
-const char *cli::ImposibleDebugIndex::what() const noexcept(true) { return msg; }
+const char *cli::ImposibleDebugIndex::what() const noexcept(true) {
+    return msg;
+}
 
 const char *cli::emulator::help_str =
     "Modo de empleo: ensamblador [opciones] "
@@ -119,19 +122,19 @@ std::ifstream cli::emulator::parse_args(int argc, const char *argv[],
         TooManyArgs e;
         throw e;
     }
-	 int file_index;
-	 switch (debug_index) {
-		case -1:
-		case 2:
-			file_index = 1;
-			break;
-		case 1:
-			file_index = 2;
-			break;
-		default:
-			ImposibleDebugIndex e;
-			throw e;
-	 }
+    int file_index;
+    switch (debug_index) {
+        case -1:
+        case 2:
+            file_index = 1;
+            break;
+        case 1:
+            file_index = 2;
+            break;
+        default:
+            ImposibleDebugIndex e;
+            throw e;
+    }
     std::ifstream ifile(argv[file_index], std::ios::binary);
     if (!ifile.is_open()) {
         FailToOpenInFile e;

@@ -10,8 +10,8 @@
  *
  */
 #include "../../include/Lexer.hpp"
-#include "../../include/bigendian.hpp"
 #include "../../include/Syntax.hpp"
+#include "../../include/bigendian.hpp"
 #include "../../include/cli.hpp"
 #include <cstdlib>
 #include <iostream>
@@ -41,11 +41,11 @@ int main(int argc, const char *argv[]) {
                       << e.what() << " in line " << line_number << "\n"
                       << line << "\ncompilación terminada." << std::endl;
             exit(-1);
-        }  
+        }
         ++line_number;
         char buffer[4];
         to_big_endian(bin_line, buffer);
-        files.ofile.write(buffer,4);
+        files.ofile.write(buffer, 4);
     }
     return 0;
 }

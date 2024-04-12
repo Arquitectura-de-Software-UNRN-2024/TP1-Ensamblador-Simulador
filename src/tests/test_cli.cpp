@@ -63,7 +63,8 @@ Test(no_args, test) {
     bool exception = false;
     const char *argv[] = {""};
     try {
-        struct cli::assembler::Files files = cli::assembler::parse_args(1, argv);
+        struct cli::assembler::Files files =
+            cli::assembler::parse_args(1, argv);
     } catch (cli::NoInFile) {
         exception = true;
     }
@@ -74,7 +75,8 @@ Test(too_many_args, test) {
     bool exception = false;
     const char *argv[] = {"", "-o", "ofile.s", "ifile.s", "extra_file"};
     try {
-        struct cli::assembler::Files files = cli::assembler::parse_args(5, argv);
+        struct cli::assembler::Files files =
+            cli::assembler::parse_args(5, argv);
     } catch (cli::TooManyArgs) {
         exception = true;
     }
@@ -85,7 +87,8 @@ Test(bad_o_use, test) {
     bool exception = false;
     const char *argv[] = {"", "-o"};
     try {
-        struct cli::assembler::Files files = cli::assembler::parse_args(2, argv);
+        struct cli::assembler::Files files =
+            cli::assembler::parse_args(2, argv);
     } catch (cli::BadOUse) {
         exception = true;
     }
@@ -96,7 +99,8 @@ Test(fail_to_open_ifile, test) {
     bool exception = false;
     const char *argv[] = {"", "ifile.s"};
     try {
-        struct cli::assembler::Files files = cli::assembler::parse_args(2, argv);
+        struct cli::assembler::Files files =
+            cli::assembler::parse_args(2, argv);
     } catch (cli::FailToOpenInFile) {
         exception = true;
     }

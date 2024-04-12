@@ -12,7 +12,6 @@
 
 #include "../include/Syntax.hpp"
 
-
 uint32_t Syntax::parse(std::vector<std::unique_ptr<Token>> tokens) {
 
     bool is_valid_grammar = false;
@@ -26,22 +25,22 @@ uint32_t Syntax::parse(std::vector<std::unique_ptr<Token>> tokens) {
         tokens[0]->should_be_followed_by();
 
     std::vector<TokenType> tokentypes;
-    tokentypes.resize(tokens.size()-1);
-    for (int i = 0; i < tokentypes.size(); i++){
-        tokentypes[i] = tokens[i+1]->get_type();
+    tokentypes.resize(tokens.size() - 1);
+    for (size_t i = 0; i < tokentypes.size(); i++) {
+        tokentypes[i] = tokens[i + 1]->get_type();
     }
-    for (std::vector<TokenType> valid_grammar : valid_grammars){
-        if (tokentypes == valid_grammar){
+    for (std::vector<TokenType> valid_grammar : valid_grammars) {
+        if (tokentypes == valid_grammar) {
             is_valid_grammar = true;
         }
     }
-    if (!is_valid_grammar){
+    if (!is_valid_grammar) {
         SyntaxError e;
-        throw e; 
+        throw e;
     }
 
     uint32_t ret = 0;
-    for (int i = 0; i < tokens.size(); ++i) {
+    for (size_t i = 0; i < tokens.size(); ++i) {
         ret |= tokens[i]->get_value();
     }
     return ret;
