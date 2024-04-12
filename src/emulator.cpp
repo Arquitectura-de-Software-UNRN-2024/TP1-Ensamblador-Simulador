@@ -27,7 +27,8 @@ void Emulator::exec(uint32_t operation) {
             this->print();
             break;
         default:
-            break;
+				InvalidOperation e;
+				throw e;
     }
 }
 

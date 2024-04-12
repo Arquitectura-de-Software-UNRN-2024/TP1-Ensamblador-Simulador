@@ -13,6 +13,16 @@
 #include <string>
 #include <vector>
 
+#define UNDERLINE "\033[4m"
+#define RESET "\033[0m"
+#define SAVE_CURSOR "\033[s"
+#define RESTORE_CURSOR "\033[u"
+#define MOVE_CURSOR "\033["
+#define UP "A"
+#define DOWN "B"
+#define FORWARD "C"
+#define BACKWARD "D"
+
 class Box {
   public:
     Box(size_t x, size_t y, size_t w, size_t h, std::string title,

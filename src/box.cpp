@@ -16,16 +16,6 @@
 #include <iostream>
 #include <regex>
 
-#define UNDERLINE "\033[4m"
-#define RESET "\033[0m"
-#define SAVE_CURSOR "\033[s"
-#define RESTORE_CURSOR "\033[u"
-#define MOVE_CURSOR "\033["
-#define UP "A"
-#define DOWN "B"
-#define FORWARD "C"
-#define BACKWARD "D"
-
 Box::Box(size_t x, size_t y, size_t w, size_t h, std::string title,
          std::vector<std::string> content)
     : x(x), y(y), title(title), content(content) {
@@ -121,6 +111,9 @@ void OpBox::update_content(uint32_t operation) {
         case static_cast<uint32_t>(OperationValue::PRINT):
             op_str = "PRINT";
             break;
+			default:
+				InvalidOperation e;
+				throw e;
     }
     op_str += std::format("{:>6}", from_int24(operation & 0x00FFFFFF));
     Box::update_content(
