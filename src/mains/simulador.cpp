@@ -26,7 +26,13 @@ int main(int argc, const char *argv[]) {
         }
         cpu = new DebugEmulator();
     }
-    cpu->run(std::move(file));
+    try {
+        cpu->run(std::move(file));
+    } catch (const std::exception &e) {
+        std::cerr << "\n" BOLDWHITE "simulador: " RED "error fatal: " RESET
+                  << e.what() << "\nejecucion terminada." << std::endl;
+        exit(-1);
+    }
     delete cpu;
     return 0;
 }

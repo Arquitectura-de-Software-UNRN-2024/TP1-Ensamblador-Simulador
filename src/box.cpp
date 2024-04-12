@@ -117,12 +117,13 @@ void OpBox::update_content(uint32_t operation) {
             InvalidOperation e;
             throw e;
     }
-    op_str += std::format("{:>6}", from_int24(operation & 0x00FFFFFF));
+    op_str = std::format("{:<5}", op_str);
+    op_str += std::format("{:>8}", from_int24(operation & 0x00FFFFFF));
     Box::update_content(
         {UNDERLINE "0x" + std::format("{:02X}", operation >> 24) +
-             RESET " " UNDERLINE +
+             RESET " - " UNDERLINE +
              std::format("{:06X}", operation & 0x00FFFFFF) + RESET,
-         "  ╱    ╲   ", op_str});
+         "  ╱       ╲ ", op_str});
 }
 
 const char *InvalidOperation::what() const noexcept(true) { return msg; }
