@@ -26,6 +26,7 @@ namespace Syntax {
         const char *what() const noexcept(true) override;
 
     private:
-        const char *msg = "SyntaxError: Found an invalid grammar";
-};
+        const char *msg = "SyntaxError: found invalid grammar";
+    };
+
 }; // namespace Syntax
