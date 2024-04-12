@@ -92,11 +92,24 @@ class FailToOpenOutFile : public std::exception {
     const char *msg = "problema abriendo el archivo de salida";
 };
 
+class ImposibleDebugIndex : public std::exception {
+  public:
+    ImposibleDebugIndex() = default;
+    ~ImposibleDebugIndex() = default;
+    ImposibleDebugIndex(ImposibleDebugIndex &&) = default;
+    ImposibleDebugIndex(const ImposibleDebugIndex &) = default;
+    const char *what() const noexcept(true) override;
+
+  private:
+    const char *msg = "El flag de debug está en un indice impesible";
+};
 namespace emulator {
 
 extern const char *help_str;
 
-std::ifstream parse_args(int argc, const char *argv[]);
+int is_debug(int argc, const char *argv[]);
+
+std::ifstream parse_args(int argc, const char *argv[], int debug_index);
 
 } // namespace emulator
 

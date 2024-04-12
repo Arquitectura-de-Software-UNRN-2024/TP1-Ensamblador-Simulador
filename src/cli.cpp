@@ -84,21 +84,49 @@ const char *cli::FailToOpenInFile::what() const noexcept(true) { return msg; }
 
 const char *cli::FailToOpenOutFile::what() const noexcept(true) { return msg; }
 
+const char *cli::ImposibleDebugIndex::what() const noexcept(true) { return msg; }
+
 const char *cli::emulator::help_str =
     "Modo de empleo: ensamblador [opciones] "
     "fichero_binario\nOpciones:\n--help | -h              "
-    "Muestra esta información.";
+    "Muestra esta información.\n--debug | -d             "
+    "Corre el programa con el emulador en modo debug.";
 
-std::ifstream cli::emulator::parse_args(int argc, const char *argv[]) {
+int is_debug(int argc, const char *argv[]) {
+    for (int i = 0; i < argc; ++i) {
+        if (std::strcmp(argv[i], "--debug") == 0 ||
+            std::strcmp(argv[i], "-d") == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+std::ifstream cli::emulator::parse_args(int argc, const char *argv[],
+                                        int debug_index) {
     if (argc < 2) {
         NoInFile e;
         throw e;
     }
-    if (argc > 2) {
+    int max_args = debug_index == -1 ? 2 : 3;
+    if (argc > max_args) {
         TooManyArgs e;
         throw e;
     }
-    std::ifstream ifile(argv[1], std::ios::binary);
+	 int file_index;
+	 switch (debug_index) {
+		case -1:
+		case 2:
+			file_index = 1;
+			break;
+		case 1:
+			file_index = 2;
+			break;
+		default:
+			ImposibleDebugIndex e;
+			throw e;
+	 }
+    std::ifstream ifile(argv[file_index], std::ios::binary);
     if (!ifile.is_open()) {
         FailToOpenInFile e;
         throw e;
