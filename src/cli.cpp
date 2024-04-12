@@ -12,6 +12,7 @@
 #include "../include/cli.hpp"
 #include <cstring>
 #include <fstream>
+#include <regex>
 
 bool cli::needs_help(int argc, const char *argv[]) {
     for (int i = 1; i < argc; ++i) {
@@ -59,7 +60,12 @@ struct cli::assembler::Files cli::assembler::parse_args(int argc,
     //  0    1 	  2	  3
     // ---  -o		ofile ifile
     int i_index = o_index == 2 || o_index == -1 ? 1 : 3;
-    std::string of_name = o_index == -1 ? "out_" + std::string(argv[i_index])
+
+    std::regex extension("\\.\\w*$");
+    
+    std::string bin_ext = std::regex_replace(std::string(argv[i_index]), extension, ".bin");
+
+    std::string of_name = o_index == -1 ? "out_" + bin_ext
                                         : argv[o_index + 1];
     std::ifstream ifile(argv[i_index]);
     if (!ifile.is_open()) {
