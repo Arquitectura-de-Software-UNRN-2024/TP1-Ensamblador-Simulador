@@ -2,7 +2,7 @@
  * @file int24.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief
+ * @brief Conversion functions for int24 type.
  * @version 0.1
  * @date 2024-04-10
  *

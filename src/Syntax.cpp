@@ -2,7 +2,7 @@
  * @file Syntax.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief cpp file for parse
  * @version 0.1
  * @date 2024-04-10
  *
@@ -12,12 +12,7 @@
 
 #include "../include/Syntax.hpp"
 
-/**
- * @brief 
- * 
- * @param tokens 
- * @return uint32_t 
- */
+
 uint32_t Syntax::parse(std::vector<std::unique_ptr<Token>> tokens) {
 
     bool is_valid_grammar = false;
