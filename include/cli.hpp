@@ -107,7 +107,7 @@ namespace emulator {
 
 extern const char *help_str;
 
-int is_debug(int argc, const char *argv[]);
+int debug_index(int argc, const char *argv[]);
 
 std::ifstream parse_args(int argc, const char *argv[], int debug_index);
 

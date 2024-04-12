@@ -98,7 +98,7 @@ const char *cli::emulator::help_str =
     "Muestra esta información.\n--debug | -d             "
     "Corre el programa con el emulador en modo debug.";
 
-int is_debug(int argc, const char *argv[]) {
+int cli::emulator::debug_index(int argc, const char *argv[]) {
     for (int i = 0; i < argc; ++i) {
         if (std::strcmp(argv[i], "--debug") == 0 ||
             std::strcmp(argv[i], "-d") == 0) {

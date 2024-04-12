@@ -48,8 +48,16 @@ void DebugEmulator::run(std::ifstream file) {
     char buffer[4];
     if (!file.eof()) {
         file.read(buffer, 4);
+        uint32_t operation = from_big_endian(buffer);
+        this->accumulator_box.update_content(
+            {std::format("{}", this->accumulator)});
+        this->next_operation.update_content(operation);
+        std::cout << "\r" << MOVE_CURSOR << 15 << FORWARD;
+		  this->accumulator_box.draw();
+		  this->next_operation.draw();
     }
     while (!file.eof()) {
+        file.read(buffer, 4);
         uint32_t operation = from_big_endian(buffer);
         this->accumulator_box.update_content(
             {std::format("{}", this->accumulator)});
@@ -59,6 +67,5 @@ void DebugEmulator::run(std::ifstream file) {
 		  this->next_operation.draw();
         getchar();
         this->exec(operation);
-        file.read(buffer, 4);
     }
 }
