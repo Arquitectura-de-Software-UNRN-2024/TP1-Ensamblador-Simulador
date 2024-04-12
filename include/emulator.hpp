@@ -1,4 +1,5 @@
 #pragma once
+#include "../include/box.hpp"
 #include <cstdint>
 #include <fstream>
 
@@ -26,10 +27,12 @@ class Emulator {
 
 class DebugEmulator : public Emulator {
   public:
-    using Emulator::Emulator;
+    DebugEmulator();
     virtual ~DebugEmulator() = default;
     virtual void run(std::ifstream) override;
 
   private:
     virtual void print() const override;
+    Box accumulator_box;
+    OpBox next_operation;
 };

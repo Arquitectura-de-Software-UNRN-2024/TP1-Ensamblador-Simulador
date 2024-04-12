@@ -1,11 +1,14 @@
 #include "../include/emulator.hpp"
 #include "../include/Tokens.hpp"
+#include "../include/bigendian.hpp"
 #include "../include/int24.hpp"
-#include "../include/box.hpp"
 #include <cstdint>
+#include <format>
 #include <iostream>
 
 Emulator::Emulator() : accumulator(0) {}
+
+DebugEmulator::DebugEmulator(): accumulator_box(3, 2, 0, 1, "─Acumlator", {}), next_operation(3, 7, 0, 3, "─Next", {}) {}
 
 void Emulator::add(int32_t value) { this->accumulator += value; }
 
@@ -27,8 +30,8 @@ void Emulator::exec(uint32_t operation) {
             this->print();
             break;
         default:
-				InvalidOperation e;
-				throw e;
+            InvalidOperation e;
+            throw e;
     }
 }
 
@@ -36,17 +39,26 @@ void Emulator::run(std::ifstream file) {
     char buffer[4];
     while (!file.eof()) {
         file.read(buffer, 4);
-		  uint32_t operation = from_big_endian(buffer);
-		  this->exec(operation);
+        uint32_t operation = from_big_endian(buffer);
+        this->exec(operation);
     }
 }
 
 void DebugEmulator::run(std::ifstream file) {
     char buffer[4];
-    while (!file.eof()) {
+    if (!file.eof()) {
         file.read(buffer, 4);
-		  uint32_t operation = from_big_endian(buffer);
-		  this->exec(operation);
-		  std::cout << "\r"; 
-	 }
+    }
+    while (!file.eof()) {
+        uint32_t operation = from_big_endian(buffer);
+        this->accumulator_box.update_content(
+            {std::format("{}", this->accumulator)});
+        this->next_operation.update_content(operation);
+        std::cout << "\r" << MOVE_CURSOR << 15 << FORWARD << "|" << this->next_operation.get_content()[2];
+		  this->accumulator_box.draw();
+		  this->next_operation.draw();
+        getchar();
+        this->exec(operation);
+        file.read(buffer, 4);
+    }
 }

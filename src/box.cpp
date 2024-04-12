@@ -2,12 +2,12 @@
  * @file box.cpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-04-11
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #include "../include/box.hpp"
 #include "../include/Tokens.hpp"
@@ -99,6 +99,8 @@ size_t Box::displayed_length(const std::string &str) {
     return grapheme_count;
 }
 
+std::vector<std::string> Box::get_content() const{ return this->content; }
+
 void OpBox::update_content(uint32_t operation) {
     std::string op_str;
     switch (operation & 0xFF000000) {
@@ -111,9 +113,9 @@ void OpBox::update_content(uint32_t operation) {
         case static_cast<uint32_t>(OperationValue::PRINT):
             op_str = "PRINT";
             break;
-			default:
-				InvalidOperation e;
-				throw e;
+        default:
+            InvalidOperation e;
+            throw e;
     }
     op_str += std::format("{:>6}", from_int24(operation & 0x00FFFFFF));
     Box::update_content(
@@ -124,3 +126,4 @@ void OpBox::update_content(uint32_t operation) {
 }
 
 const char *InvalidOperation::what() const noexcept(true) { return msg; }
+

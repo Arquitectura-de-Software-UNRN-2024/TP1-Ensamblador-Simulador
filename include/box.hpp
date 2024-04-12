@@ -29,6 +29,7 @@ class Box {
         std::vector<std::string> content);
     void update_content(std::vector<std::string> new_content);
     void draw() const;
+	 std::vector<std::string> get_content()const;
 
   private:
     static size_t displayed_length(const std::string &str);
