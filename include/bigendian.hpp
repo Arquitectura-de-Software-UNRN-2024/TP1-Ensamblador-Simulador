@@ -1,8 +1,8 @@
 /**
- * @file tobigendian.hpp
+ * @file bigendian.hpp
  * @author Pojmaevich Mirko (mirkopoj@gmail.com)
  *         Torletti Lara (lara.a.torletti@gmail.com)
- * @brief the hpp file to the function to convert a num to big endian
+ * @brief the hpp file to the function to convert a num to big endian and from big endian
  * @version 0.1
  * @date 2024-04-11
  * 
@@ -12,4 +12,6 @@
 
 #include <cstdint>
 
-void convert_to_Big_Endian(uint32_t num, char buffer[4]);
+void to_big_endian(uint32_t num, char buffer[4]);
+
+uint32_t from_big_endian(char buffer[4]);
