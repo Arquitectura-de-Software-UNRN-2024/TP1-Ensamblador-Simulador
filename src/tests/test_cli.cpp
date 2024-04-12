@@ -31,7 +31,7 @@ Test(args_in, test) {
     std::string result;
     files.ifile >> result;
     remove_temp_file("ifile.s");
-    remove_temp_file("out_ifile.s");
+    remove_temp_file("out_ifile.bin");
     cr_assert_eq(result, expected);
 }
 
