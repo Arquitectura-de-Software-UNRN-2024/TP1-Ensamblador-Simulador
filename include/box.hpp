@@ -1,3 +1,14 @@
+/**
+ * @file box.hpp
+ * @author Pojmaevich Mirko (mirkopoj@gmail.com)
+ *         Torletti Lara (lara.a.torletti@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2024-04-11
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -25,3 +36,15 @@ class OpBox : public Box {
     using Box::Box;
     void update_content(uint32_t operation);
 };
+
+class InvalidOperation : public std::exception {
+    public:
+        InvalidOperation() = default;
+        ~InvalidOperation() = default;
+        InvalidOperation(InvalidOperation &&) = default;
+        InvalidOperation(const InvalidOperation &) = default;
+        const char *what() const noexcept(true) override;
+
+    private:
+        const char *msg = "Invalid Operation: non existing operation";
+    };

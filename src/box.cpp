@@ -1,3 +1,14 @@
+/**
+ * @file box.cpp
+ * @author Pojmaevich Mirko (mirkopoj@gmail.com)
+ *         Torletti Lara (lara.a.torletti@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2024-04-11
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "../include/box.hpp"
 #include "../include/Tokens.hpp"
 #include "../include/int24.hpp"
@@ -118,3 +129,5 @@ void OpBox::update_content(uint32_t operation) {
              std::format("{:06X}", operation & 0x00FFFFFF) + RESET,
          "  ╱    ╲   ", op_str});
 }
+
+const char *InvalidOperation::what() const noexcept(true) { return msg; }

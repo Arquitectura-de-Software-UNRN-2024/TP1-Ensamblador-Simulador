@@ -10,7 +10,7 @@
  *
  */
 #include "../../include/Lexer.hpp"
-#include "../../include/tobigendian.hpp"
+#include "../../include/bigendian.hpp"
 #include "../../include/Syntax.hpp"
 #include "../../include/cli.hpp"
 #include <cstdlib>
@@ -44,7 +44,7 @@ int main(int argc, const char *argv[]) {
         }  
         ++line_number;
         char buffer[4];
-        convert_to_Big_Endian(bin_line, buffer);
+        to_big_endian(bin_line, buffer);
         files.ofile.write(buffer,4);
     }
     return 0;
